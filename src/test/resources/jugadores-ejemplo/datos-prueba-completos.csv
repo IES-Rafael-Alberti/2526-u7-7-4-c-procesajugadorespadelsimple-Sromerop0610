@@ -1,0 +1,19 @@
+fichero|nombre|apellidos|nivel|horario|caso
+ana-garcia.txt|Ana|García López|intermedio|tarde|válido; pareja intermedia tarde
+marta-ruiz.txt|Marta|Ruiz Cano|intermedio|tarde|válido; jugadora sin pareja por número impar
+elena-martin.txt|Elena|Martín Gil|intermedio|tarde|válido; pareja intermedia tarde
+sergio-castro.txt|Sergio|Castro Ríos|intermedio|tarde|válido; pareja intermedia tarde
+hugo-molina.txt|Hugo|Molina Vega|intermedio|tarde|válido; pareja intermedia tarde
+irene-gomez.txt|Irene|Gómez Solís|iniciación|mañana|válido; nivel iniciación y horario mañana
+carlos-pena.txt|Carlos|Peña Mora|iniciación|mañana|válido; franja mañana exacta
+laura-blanco.txt|Laura|Blanco Díaz|iniciación|tarde|válido; conflicto tarde/mañana resuelto por carga
+diego-santos.txt|Diego|Santos Vera|iniciación|tarde|válido; pareja sin partido
+marcos-rubio.txt|Marcos|Rubio Pérez|avanzado|indiferente|válido; una persona indiferente
+pablo-torres.txt|Pablo|Torres Díaz|avanzado|tarde|válido; pareja avanzada tarde
+beatriz-luna.txt|Beatriz|Luna Sánchez|avanzado|mañana|válido; pareja avanzada mañana
+nicolas-vega.txt|Nicolás|Vega Romero|avanzado|tarde|válido; conflicto mañana/tarde
+olivia-marin.txt|Olivia|Marín Ortega|avanzado|indiferente|válido; dos personas indiferentes
+raul-cortes.txt|Raúl|Cortés Núñez|avanzado|indiferente|válido; dos personas indiferentes
+lucia-sin-nivel.txt|Lucía|Navarro Soto|experto|mañana|error; nivel no válido
+horario-invalido.txt|Clara|Rojas Méndez|intermedio|noche|error; horario no válido
+incompleto.txt|Iván|Prieto León|avanzado||error; falta Horario

@@ -1,10 +1,9 @@
 # ENTREGA
 
-TODO: ¿Quien eres?
+TODO: ¿Quién eres?
 
 > Sustituye cada `TODO` por tu respuesta.
 > Usa enlaces permanentes de GitHub cuando se pidan enlaces al código.
-
 
 ## Descripción breve de la solución
 
@@ -12,80 +11,81 @@ TODO
 
 ## Ejemplo de ejecución
 
-### Fichero de correos
+### Fichero de parejas
 
-```
+```text
 TODO
 ```
 
-### Fichero de grupos
+### Fichero de partidos
 
-```
+```text
 TODO
 ```
 
-### Salida a consola con incidencias
+### Salida por consola con incidencias
 
-```
+```text
 TODO
 ```
 
 ### Carpeta `procesados` con los ficheros movidos
 
-TODO: Evidencia, capura de pantalla.
+TODO: Evidencia o captura de pantalla.
 
 ## Preguntas: COMPLEMENTA LAS RESPUESTAS CON ENLACES PERMANENTES DE GITHUB
 
-### [CE 5.a] 1.a. Muestra cómo tu programa recibe y utiliza los argumentos `--grupo` y `--path`.
+### [CE 5.a] 1.a. Muestra cómo tu programa recibe y utiliza los argumentos `--torneo` y `--path`.
 
 Incluye:
 
-- Enlace permanente al código donde se procesan los argumentos
+- Enlace permanente al código donde se procesan los argumentos.
   TODO
 - Breve explicación.
   TODO
-- Ejemplo de ejecución real (comando + salida por consola)
+- Ejemplo de ejecución real con comando y salida por consola.
   TODO
-
 
 ### [CE 5.b] 2.a. Muestra la salida completa por consola tras procesar varios ficheros.
 
-Explica brevemente y no olvides enlaces permanente al código:
+Explica brevemente y no olvides enlaces permanentes al código:
 
-- Qué información muestras: Ejemplo de ejecución real (comando + salida por consola)
+- Qué información muestras.
   TODO
-- Cómo has estructurado el formato para que sea legible
+- Cómo has estructurado el formato para que sea legible.
+  TODO
+- Ejemplo de ejecución real con comando y salida por consola.
   TODO
 
-
-### [CE 5.c] 3.a. Indica qué clases o métodos has utilizado para trabajar con ficheros y por qué las has elegido.
+### [CE 5.c] 3.a. Indica qué clases o métodos has utilizado para trabajar con ficheros y por qué los has elegido.
 
 Incluye:
 
-- Enlace permanente al código donde se ejemplifica su uso
+- Enlace permanente al código donde se ejemplifica su uso.
   TODO
-- Descripción del código anterior. Porque usas esas y no otras.
+- Descripción del código anterior.
+  TODO
+- Justificación de por qué usas esas clases o métodos y no otros.
   TODO
 
 ### [CE 5.d] 4.a. Muestra cómo interpretas el formato del fichero de entrada y cómo validas que sea correcto.
 
 Incluye:
 
-- Enlace permanente al código de lectura/validación
+- Enlace permanente al código de lectura y validación.
   TODO
-- Descripción del código anterior. Explica cómo validas el formato y qué errores detectas.
+- Descripción del código anterior.
   TODO
-- Un ejemplo de error detectado por tu programa y cómo se gestiona. Salida notificándo el error.
+- Un ejemplo de error detectado por tu programa y cómo se gestiona.
   TODO
 
+### [CE 5.e] 5.a. Breve comentario sobre tu código, con enlaces permanentes, acerca de cómo realizas:
 
-### [CE 5.e] 5.a. Breve comentario sobre tu código (añade enlace permanente), acerca de cómo realizas:
-
-- Describe la lectura de ficheros, añade enlace permanente
+- Describe la lectura de ficheros.
   TODO
-- Describe la escritura de resultados (CSV/TXT), añade enlace permanente
+- Describe la escritura de resultados CSV y TXT.
   TODO
-- Describe el movimiento de ficheros a la carpeta `procesados`, añade enlace permanente
+- Describe el movimiento de ficheros a la carpeta `procesados`.
   TODO
 
 Incluye un enlace permanente a cada caso y una breve explicación.

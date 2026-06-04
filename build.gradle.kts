@@ -19,7 +19,7 @@ kotlin {
 }
 
 application {
-    mainClass = "org.iesra.procesaalumnos.MainKt"
+    mainClass = "org.iesra.procesapadel.MainKt"
 }
 
 tasks.test {
