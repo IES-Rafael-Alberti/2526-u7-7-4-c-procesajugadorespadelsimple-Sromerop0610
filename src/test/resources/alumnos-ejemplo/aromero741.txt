@@ -1,4 +1,0 @@
-Nombre: Ana
-Apellidos: Romero Castillo
-email: aromero741@g.educaand.es
-Grupo = C

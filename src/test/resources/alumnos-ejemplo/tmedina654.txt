@@ -1,3 +1,0 @@
-Nombre: Tomas
-email: tmedina654@g.educaand.es
-Grupo = D

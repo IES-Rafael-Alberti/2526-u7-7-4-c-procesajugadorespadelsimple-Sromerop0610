@@ -1,4 +1,0 @@
-Nombre: Oscar
-Apellidos: Medina Torres
-email: omedina999@g.educaand.es
-Grupo = D

@@ -1,4 +1,0 @@
-Nombre: Maria
-Apellidos: Moya Calvo
-email: mmoya222@g.educaand.es
-Grupo = A
