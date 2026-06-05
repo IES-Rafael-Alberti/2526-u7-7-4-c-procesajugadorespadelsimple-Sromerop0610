@@ -51,8 +51,8 @@ class PadelProcessingApplication {
 
 
               issues.add(FileIssue(
-                       fileName = file.fileName.toString(),
-            message = "Uno de los valores introducidos es incorrecto"
+                  fileName = file.fileName.toString(),
+                  message = "Uno de los valores introducidos es incorrecto"
             ))
 
                // 5. Si el parser obtiene un jugador correcto, guardarlo como objeto `Player`.
