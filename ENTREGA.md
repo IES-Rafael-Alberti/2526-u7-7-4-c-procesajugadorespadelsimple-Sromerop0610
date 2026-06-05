@@ -149,30 +149,41 @@ PERMALINKS:
 - https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/a9b392863cb96715965a59d5374bb4adf4fbe8a1/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/OutputWriter.kt#L1-L63
 
 ### [CE 5.d] 4.a. Muestra cómo interpretas el formato del fichero de entrada y cómo validas que sea correcto.
+Cuando leo cada archivo compruebo:
 
-Incluye:
+- Que tenga los 4 campos (nombre, apellidos, nivel y horario)
+- Que el nivel sea exactamente: iniciación, intermedio o avanzado
+- Que el horario sea: mañana, tarde o indiferente
 
-- Enlace permanente al código de lectura y validación.
-  TODO
-- Descripción del código anterior.
-  TODO
-- Un ejemplo de error detectado por tu programa y cómo se gestiona.
-  TODO
+Si alguno de estos datos no es correcto:
 
+- El fichero no se convierte en Player
+- Se añade a la lista de incidencias
+Ejemplo de error:
+```text
+Incidencias: 3
+
+- Error: FileIssue(fileName=horario-invalido.txt, message=Jugador inv´┐¢lido: falta alg´┐¢n campo o nivel/horario incorrecto) 
+```
+- PERMALINK: https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/b754de4d9b211a0f5345ebd3fb384f3072da8d12/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/playerParser.kt#L1-L53
 ### [CE 5.e] 5.a. Breve comentario sobre tu código, con enlaces permanentes, acerca de cómo realizas:
+Uso Files.list para obtener todos los .txt del directorio de entrada.
 
-- Describe la lectura de ficheros.
-  TODO
-- Describe la escritura de resultados CSV y TXT.
-  TODO
-- Describe el movimiento de ficheros a la carpeta `procesados`.
-  TODO
+Para la escritura de resultados uso Files.write y genero:
+- torneo-parejas.csv
+- torneo-partidos.txt
+Estos ficheros se crean dentro de la carpeta jugadores-ejemplo
 
-Incluye un enlace permanente a cada caso y una breve explicación.
+Para el movimiento a procesados usamos
+https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/b754de4d9b211a0f5345ebd3fb384f3072da8d12/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/playerFileRepository.kt#L31
+Así evitamos que se vuelvan a leer
 
+PERMALINKS: 
+- https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/b754de4d9b211a0f5345ebd3fb384f3072da8d12/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/playerFileRepository.kt#L1-L33
+- https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/b754de4d9b211a0f5345ebd3fb384f3072da8d12/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/OutputWriter.kt#L1-L63
 ## Checklist final
 
-- [ ] He rellenado todos los `TODO`.
-- [ ] He añadido enlaces permanentes de GitHub.
-- [ ] He incluido ejemplos reales de ejecución y salida.
-- [ ] He revisado el formato final.
+- [x] He rellenado todos los `TODO`.
+- [x] He añadido enlaces permanentes de GitHub.
+- [x] He incluido ejemplos reales de ejecución y salida.
+- [x] He revisado el formato final.
