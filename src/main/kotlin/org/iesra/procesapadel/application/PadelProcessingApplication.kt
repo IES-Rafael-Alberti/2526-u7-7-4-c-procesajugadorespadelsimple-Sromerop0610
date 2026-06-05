@@ -49,6 +49,7 @@ class PadelProcessingApplication {
                // 4. Si el parser detecta errores, guardar incidencias.
             if (player==null)
 
+
               issues.add(FileIssue(
                        fileName = file.fileName.toString(),
             message = "Uno de los valores introducidos es incorrecto"
