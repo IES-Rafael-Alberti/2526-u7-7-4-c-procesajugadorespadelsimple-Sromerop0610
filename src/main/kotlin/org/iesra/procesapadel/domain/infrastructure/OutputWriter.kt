@@ -15,14 +15,14 @@ class OutputWriter {
         val file = outputDir.resolve("torneo-parejas.csv")
 
         val lines = buildList {
-        val indice = 0
+        var indice = 0
 
             for (couple in couples) {
                 add("pareja|jugador1|jugador2|nivel|franja")
-                add("P$indice ${couple.player1} | ${couple.player2} | ${couple.level.uppercase()} | Horario: ${couple.time}")
+                add("P$indice ${couple.player1.name} | ${couple.player2.name} | ${couple.level.uppercase()} | Horario: ${couple.time}")
 
                 add("")
-                indice + 1
+                indice += 1
             }
         }
 
@@ -48,13 +48,13 @@ class OutputWriter {
 
                 add("Franja: ${match.time}")
 
-                add("P${indice * 2 - 1}: ${match.couple1.player1} / ${match.couple1.player2}")
+                add("P${indice * 2 - 1}: ${match.couple1.player1.name} / ${match.couple1.player2.name}")
 
-                add("P${indice * 2}: ${match.couple2.player1} / ${match.couple2.player2}")
+                add("P${indice * 2}: ${match.couple2.player1.name} / ${match.couple2.player2.name}")
 
                 add("")
 
-                indice + 1
+                indice += 1
             }
         }
 

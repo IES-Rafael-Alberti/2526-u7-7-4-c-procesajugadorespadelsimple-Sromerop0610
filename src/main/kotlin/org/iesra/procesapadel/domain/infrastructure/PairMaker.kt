@@ -108,7 +108,7 @@ class PairMaker {
                     encontrado = true
                 }
 
-                indice2 + 1
+                indice2 += 1
             }
 
             if (!encontrado) {

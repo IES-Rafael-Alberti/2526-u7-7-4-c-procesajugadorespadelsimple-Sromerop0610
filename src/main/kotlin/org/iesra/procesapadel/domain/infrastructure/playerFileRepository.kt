@@ -20,10 +20,11 @@ class playerFileRepository {
     // Función que mueve los archivos .txt a la carpeta procesados desde el path introducido
     fun moveToProcessed(path: Path) {
 
-        val processedDir = path.resolve("procesados")
+        val processedDir = path.parent.resolve("procesados")
 
-        if (!Files.exists(processedDir))
+        if (!Files.exists(processedDir)) {
             Files.createDirectories(processedDir)
+        }
 
         val target = processedDir.resolve(path.fileName)
 

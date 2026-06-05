@@ -6,46 +6,26 @@ import org.iesra.procesapadel.domain.infrastructure.PairMaker
 import org.iesra.procesapadel.domain.infrastructure.levelNormalizer
 import org.iesra.procesapadel.domain.infrastructure.playerFileRepository
 import org.iesra.procesapadel.domain.infrastructure.playerParser
+import org.iesra.procesapadel.domain.infrastructure.SummaryPrinter
 import org.iesra.procesapadel.domain.model.FileIssue
 import org.iesra.procesapadel.domain.model.Player
-import org.iesra.procesapadel.domain.infrastructure.SummaryPrinter
 import org.iesra.procesapadel.domain.model.ProcessingSummary
 import java.nio.file.Files
 import java.nio.file.Path
 
-/**
- * Coordina el caso de uso principal del programa.
- *
- * En esta base didáctica se comporta como orquestador: recibe los datos de entrada
- * ya parseados y explica cómo se podría repartir el trabajo entre otros objetos.
- *
- * Importante: en la rama `main` todavía no depende de implementaciones reales ni de
- * interfaces con métodos, porque la intención aquí es enseñar la estructura antes
- * de construir la solución completa.
- */
 class PadelProcessingApplication {
 
-    /**
-     * Ejecuta el flujo principal del programa. Debes desglosarlo en llamadas a distintos métodos.
-     *
-     * @param options opciones recibidas desde la línea de comandos.
-     */
     fun run(options: CliOptions) {
+
         println("Torneo recibido: ${options.tournament}")
         println("Directorio de trabajo: ${options.path}")
+
         val playerFileRepository = playerFileRepository()
         val playerParser = playerParser()
         val levelNormalizer = levelNormalizer()
         val pairMaker = PairMaker()
         val outputWriter = OutputWriter()
-        val outputDir = Path.of("output")
         val summaryPrinter = SummaryPrinter()
-
-        if (!Files.exists(outputDir)) {
-            Files.createDirectories(outputDir)
-        }
-        // A partir de aquí, una solución OO razonable podría seguir este flujo.
-        // En esta rama base no se implementa todavía: solo se deja la guía.
 
         // ####################### Entrada: Lectura de datos, conversión a estructuras
 
@@ -53,71 +33,67 @@ class PadelProcessingApplication {
         val inputFiles = playerFileRepository.findInputFiles(options.path)
 
         // 2. Crear colecciones donde guardar jugadores válidos e incidencias.
-        val players = mutableListOf<Player?>()
+        val players = mutableListOf<Player>()
         val issues = mutableListOf<FileIssue>()
 
         // 3. Recorrer cada fichero y delegar el parseo en un objeto parser.
-        // Esto es un metodo: procesaFichero(inputFile, players, issues)
         for (file in inputFiles) {
-             val player = playerParser.parse(file)
 
-               // 4. Si el parser detecta errores, guardar incidencias.
-            if (player==null)
+            val player = playerParser.parse(file)
 
+            // 4. Si el parser detecta errores, guardar incidencias.
+            if (player == null) {
 
-              issues.add(FileIssue(
-                  fileName = file.fileName.toString(),
-                  message = "Uno de los valores de los jugadores está vacío o no corresponde al dato pedido en franja(tarde, noche, indiferente) o en nivel (intermedio, avanzado, iniciación)"
-            ))
+                issues.add(
+                    FileIssue(
+                        fileName = file.fileName.toString(),
+                        message = "Jugador inválido: falta algún campo o nivel/horario incorrecto"
+                    )
+                )
 
-               // 5. Si el parser obtiene un jugador correcto, guardarlo como objeto `Player`.
-               players.add(player)
+            } else {
 
-               // 6. Delegar el movimiento a `procesados` a un repositorio o gestor de ficheros.
-               playerFileRepository.moveToProcessed(file)
+                // 5. Si el parser obtiene un jugador correcto, guardarlo como objeto `Player`.
+                players.add(player)
+            }
 
-
-         }
+            // 6. Delegar el movimiento a `procesados` a un repositorio o gestor de ficheros.
+            playerFileRepository.moveToProcessed(file)
+        }
 
         // ####################### Procesamiento: de datos de entrada, y generación de datos de salida
 
-        // Otro método: procesaJugadores(players)
         // 7. Para cada Player, calcular su nivel normalizado y validar su disponibilidad.
-        val player = listOf<Player>()
-        val normalizedLevel = levelNormalizer.normalize(player)
+        levelNormalizer.normalize(players)
 
         // 8. Delegar la creación de parejas equilibradas a una clase especializada.
-        val validPlayers = players.filterNotNull()
+        val validPlayers = players
 
         val pairs = pairMaker.createPairs(validPlayers)
 
         // 9. Delegar la generación de partidos evitando repetir horarios.
         val matches = pairMaker.createMatches(pairs)
+
         // ####################### Salida: ficheros de salida y resumen
 
         // 10. Delegar la escritura de ficheros de salida a un escritor.
-        outputWriter.writePairs(pairs, outputDir)
-        outputWriter.writeMatches(matches, outputDir)
-
+        outputWriter.writePairs(pairs, options.path)
+        outputWriter.writeMatches(matches, options.path)
 
         // 11. Finalmente, construir un resumen y mostrarlo por consola.
         val summary = ProcessingSummary(
             filesProcessed = inputFiles.size,
-            validPlayers = players.filterNotNull().size,
+            validPlayers = players.size,
             issues = issues.size,
             couples = pairs.size,
             matches = matches.size
         )
+
         summaryPrinter.print(summary)
 
         printSuggestedDesign()
     }
 
-    /**
-     * Muestra por consola una posible descomposición del problema en objetos.
-     *
-     * Esta salida sirve como orientación y no forma parte de la solución final.
-     */
     private fun printSuggestedDesign() {
         println()
         println("Sugerencia de diseño orientado a objetos:")
