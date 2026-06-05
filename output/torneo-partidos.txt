@@ -1,0 +1,12 @@
+[Partido-1]
+Nivel: AVANZADO
+Franja: mañana
+P1: Player(name=Marcos, surname=Rubio Pérez, level=avanzado, time=indiferente, fileName=marcos-rubio.txt) / Player(name=Olivia, surname=Marín Ortega, level=avanzado, time=indiferente, fileName=olivia-marin.txt)
+P2: Player(name=Raúl, surname=Cortés Núñez, level=avanzado, time=indiferente, fileName=raul-cortes.txt) / Player(name=Beatriz, surname=Luna Sánchez, level=avanzado, time=mañana, fileName=beatriz-luna.txt)
+
+[Partido-1]
+Nivel: INTERMEDIO
+Franja: tarde
+P1: Player(name=Ana, surname=García López, level=intermedio, time=tarde, fileName=ana-garcia.txt) / Player(name=Elena, surname=Martín Gil, level=intermedio, time=tarde, fileName=elena-martin.txt)
+P2: Player(name=Hugo, surname=Molina Vega, level=intermedio, time=tarde, fileName=hugo-molina.txt) / Player(name=Marta, surname=Ruiz Cano, level=intermedio, time=tarde, fileName=marta-ruiz.txt)
+
