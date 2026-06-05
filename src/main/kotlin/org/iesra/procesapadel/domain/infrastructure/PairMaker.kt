@@ -68,45 +68,44 @@ class PairMaker {
         return couples
     }
 }
-/*
-    fun matchGenerator(couples: List<Couple>) : MutableList<Match> {
-        val matches = mutableListOf<Match>()
-        val couples = couples.sortedBy { it.time }
+fun matchGenerator(couples: List<Couple>): MutableList<Match> {
 
-        for (couple in couples){
-            if (couple.time == "mañana")
-                mañana += couple
+    val matches = mutableListOf<Match>()
 
-        }
-        var couplesMañana = couples.filter{}
+    var indice = 0
+    var indice2 = 1
 
-        if (couples.size % 2 == 0){
-            while (indice + 1 < couples.size) {
-                if (couple1.time == couple2.time) {
-                    if (couple1.level == couple2.level) {
-                        matches.add(Match(couple1, couple2, couple1.level, couple2.time))
-                        indice + 2
-                    } else{
-                        indice + 1
-                        couple2 =  couple
-                } }
+    val orderedCouples = couples.sortedBy { it.time }
+
+    while (indice < orderedCouples.size) {
+
+        val couple1 = orderedCouples[indice]
+
+        indice2 = indice + 1
+
+        var encontrado = false
+
+        while (indice2 < orderedCouples.size && !encontrado) {
+
+            val couple2 = orderedCouples[indice2]
+
+            if (couple1.time == couple2.time && couple1.level == couple2.level) {
+                matches.add(
+                    Match(
+                        couple1,
+                        couple2,
+                        couple1.level,
+                        couple1.time
+                    )
+                )
+                encontrado = true
             }
-        } else{
-            while (indice < couples.size) {
-                if (couple1.time == couple2.time) {
-                    if (couple1.level == couple2.level) {
-                        matches.add(Match(couple1, couple2, couple1.level, couple2.time))
-                        indice + 2
-                    }
-                }
-            }
+
+            indice2 + 1
         }
 
-
-
-        return matches
-
+        indice + 1
     }
 
-
- */
+    return matches
+}
