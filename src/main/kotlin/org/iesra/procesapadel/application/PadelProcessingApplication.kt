@@ -8,6 +8,8 @@ import org.iesra.procesapadel.domain.infrastructure.playerFileRepository
 import org.iesra.procesapadel.domain.infrastructure.playerParser
 import org.iesra.procesapadel.domain.model.FileIssue
 import org.iesra.procesapadel.domain.model.Player
+import org.iesra.procesapadel.domain.infrastructure.SummaryPrinter
+import org.iesra.procesapadel.domain.model.ProcessingSummary
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -37,6 +39,7 @@ class PadelProcessingApplication {
         val pairMaker = PairMaker()
         val outputWriter = OutputWriter()
         val outputDir = Path.of("output")
+        val summaryPrinter = SummaryPrinter()
 
         if (!Files.exists(outputDir)) {
             Files.createDirectories(outputDir)
@@ -84,11 +87,12 @@ class PadelProcessingApplication {
         val normalizedLevel = levelNormalizer.normalize(player)
 
         // 8. Delegar la creación de parejas equilibradas a una clase especializada.
-        val pairs = pairMaker.createPairs(player)
+        val validPlayers = players.filterNotNull()
+
+        val pairs = pairMaker.createPairs(validPlayers)
 
         // 9. Delegar la generación de partidos evitando repetir horarios.
         val matches = pairMaker.createMatches(pairs)
-
         // ####################### Salida: ficheros de salida y resumen
 
         // 10. Delegar la escritura de ficheros de salida a un escritor.
@@ -97,8 +101,14 @@ class PadelProcessingApplication {
 
 
         // 11. Finalmente, construir un resumen y mostrarlo por consola.
-        // val summary = ProcessingSummary(...)
-        // summaryPrinter.print(summary)
+        val summary = ProcessingSummary(
+            filesProcessed = inputFiles.size,
+            validPlayers = players.filterNotNull().size,
+            issues = issues.size,
+            couples = pairs.size,
+            matches = matches.size
+        )
+        summaryPrinter.print(summary)
 
         printSuggestedDesign()
     }
