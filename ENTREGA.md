@@ -94,10 +94,12 @@ Sugerencia de dise´┐¢o orientado a objetos:
 ## Preguntas: COMPLEMENTA LAS RESPUESTAS CON ENLACES PERMANENTES DE GITHUB
 
 ### [CE 5.a] 1.a. Muestra cómo tu programa recibe y utiliza los argumentos `--torneo` y `--path`.
-Los argumentos se leen desde la línea de comandos en CliOptions.
-El parámetro --torneo indica el nombre del torneo y --path indica la carpeta donde están los ficheros de entrada.
-Si no se pasa --path, se usa el directorio actual.
+Los argumentos se reciben desde la línea de comandos cuando se ejecuta el programa.
+- --torneo indica el nombre del torneo, que se usa luego en los nombres de los ficheros de salida.
+- --path indica la carpeta donde están los ficheros de entrada.
+- Si no se pasa --path, el programa usa el directorio actual.
 
+Estos valores se guardan en CliOptions y luego se usan dentro de PadelProcessingApplication para iniciar todo el flujo del programa.
 Ejemplo de ejecución:
 ```bash
 --torneo PADEL-1 --path src/test/resources/jugadores-ejemplo
@@ -111,25 +113,40 @@ PERMALINK: https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadoresp
 
 ### [CE 5.b] 2.a. Muestra la salida completa por consola tras procesar varios ficheros.
 
-Explica brevemente y no olvides enlaces permanentes al código:
+La salida por consola muestra un resumen finl del procesamiento. Sirve para comprobar rápidamente si el programa ha funcionado bien.
 
-- Qué información muestras.
-  TODO
-- Cómo has estructurado el formato para que sea legible.
-  TODO
-- Ejemplo de ejecución real con comando y salida por consola.
-  TODO
+Se muestran:
+- número de ficheros procesados 
+- número de jugadores válidos 
+- número de incidencias 
+- número de parejas creadas 
+- número de partidos generados
 
+He separado la información en bloques para que sea fácil de leer:
+- Primero los dats generales
+- Luego el resumen numérico
+- Finalmente las incidencias si existen
+
+Ejemplo:
+```text
+Ficheros procesados: 18
+Jugadores v´┐¢lidos: 15
+Incidencias: 3
+Parejas creadas: 7
+Partidos generados: 2
+```
 ### [CE 5.c] 3.a. Indica qué clases o métodos has utilizado para trabajar con ficheros y por qué los has elegido.
+Para trabajar con ficheros he usado las clases de java.nio.file, como:
 
-Incluye:
+- Files.list → para leer todos los ficheros del directorio 
+- Files.readAllLines → para leer el contenido de cada jugador 
+- Files.write → para escribir los ficheros de salida 
+- Files.move → para mover los ficheros a la carpeta procesados
 
-- Enlace permanente al código donde se ejemplifica su uso.
-  TODO
-- Descripción del código anterior.
-  TODO
-- Justificación de por qué usas esas clases o métodos y no otros.
-  TODO
+He elegido estas clases porque son las más simples y directas en Java/Kotlin para trabajar con ficheros. No necesitan librerías externas y permiten hacer todo lo que pide el ejercicio de forma clara: leer, escribir y mover archivos.
+PERMALINKS:
+- https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/a9b392863cb96715965a59d5374bb4adf4fbe8a1/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/playerFileRepository.kt#L1-L33
+- https://github.com/IES-Rafael-Alberti/2526-u7-7-4-c-procesajugadorespadelsimple-Sromerop0610/blob/a9b392863cb96715965a59d5374bb4adf4fbe8a1/src/main/kotlin/org/iesra/procesapadel/domain/infrastructure/OutputWriter.kt#L1-L63
 
 ### [CE 5.d] 4.a. Muestra cómo interpretas el formato del fichero de entrada y cómo validas que sea correcto.
 
