@@ -1,37 +1,65 @@
 package org.iesra.procesapadel.domain.infrastructure
 
+import com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time
+import org.iesra.procesapadel.domain.model.Couple
 import org.iesra.procesapadel.domain.model.Player
 
 class SimplePadelCoupleGenerator {
-    fun generator(player: Player) {
-        val couples: MutableMap<String, List<Player?>> = mutableMapOf()
 
-        val aux = SimplePadelLevelAgrupation()
-        val levels = aux.matchLevels(player)
+    fun contadorTime(mañana: Int, tarde: Int): String {
+        if (mañana>tarde)
+            return "tarde"
+        if (mañana < tarde)
+            return "mañana"
+        else (mañana == tarde)
+            return "mañana"
+    }
 
-        levels.forEach {
-            var playerList = mutableListOf<Player>()
+    fun generator(player: List<Player>) : MutableList<Couple> {
 
-            var player1 = playerList.firstOrNull()
-            var player2 = playerList.getOrNull(1)
+        val levels = player.groupBy { it.level }
+        val times = mutableMapOf<String, List<Couple>>()
+        var indice = 0
+        var couples: MutableList<Couple> = mutableListOf<Couple>()
+        var mañana = 0
+        var tarde = 0
+        var time = ""
 
-            var group = "A"
-            var indice = 2
+        for ((level, players) in levels) {
+            val orderplayer = players.sortedBy { it.time }
 
-            while (player1 != null){
-                if (player2 == null){
-                    couples[group] = listOf(player2)
-                }else {
+            while (indice + 1 < players.size) {
 
-                var couple = listOf(player1, player2)
-                couples[group] = couple
+                var player1 = orderplayer.get(indice)
+                var player2 = orderplayer.get(indice + 1)
 
-                player1 = playerList[indice]
-                player2 = playerList[indice+1]
-                group + 2
+                if (player1.time == player2.time && player1.time != "indiferente") {
+                    time = player1.time
+                    if (time == "mañana") mañana++ else tarde++
+                }
+                if (player1.time == player2.time && player1.time == "indiferente") {
+                    time = contadorTime(mañana, tarde)
+                    if (time == "mañana") mañana++ else tarde++
+                }
+                if (player1.time == "indiferente" && player2.time != "indiferente") {
+                    time = player2.time
+                    if (time == "mañana") mañana++ else tarde++
+                }
+                if (player2.time == "indiferente" && player1.time != "indiferente") {
+                    time = player1.time
+                    if (time == "mañana") mañana++ else tarde++
                 }
 
+                indice + 2
+
+                couples.add(Couple(
+                    player1,
+                    player2,
+                    level,
+                    time,
+                ))
             }
         }
+        return couples
     }
 }
