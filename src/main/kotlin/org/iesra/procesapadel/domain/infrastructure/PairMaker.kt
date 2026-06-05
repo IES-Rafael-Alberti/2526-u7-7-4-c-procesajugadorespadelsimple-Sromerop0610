@@ -67,45 +67,46 @@ class PairMaker {
         }
         return couples
     }
-}
-fun matchGenerator(couples: List<Couple>): MutableList<Match> {
 
-    val matches = mutableListOf<Match>()
+    fun matchGenerator(couples: List<Couple>): MutableList<Match> {
 
-    var indice = 0
-    var indice2 = 1
+        val matches = mutableListOf<Match>()
 
-    val orderedCouples = couples.sortedBy { it.time }
+        var indice = 0
+        var indice2 = 1
 
-    while (indice < orderedCouples.size) {
+        val orderedCouples = couples.sortedBy { it.time }
 
-        val couple1 = orderedCouples[indice]
+        while (indice < orderedCouples.size) {
 
-        indice2 = indice + 1
+            val couple1 = orderedCouples[indice]
 
-        var encontrado = false
+            indice2 = indice + 1
 
-        while (indice2 < orderedCouples.size && !encontrado) {
+            var encontrado = false
 
-            val couple2 = orderedCouples[indice2]
+            while (indice2 < orderedCouples.size && !encontrado) {
 
-            if (couple1.time == couple2.time && couple1.level == couple2.level) {
-                matches.add(
-                    Match(
-                        couple1,
-                        couple2,
-                        couple1.level,
-                        couple1.time
+                val couple2 = orderedCouples[indice2]
+
+                if (couple1.time == couple2.time && couple1.level == couple2.level) {
+                    matches.add(
+                        Match(
+                            couple1,
+                            couple2,
+                            couple1.level,
+                            couple1.time
+                        )
                     )
-                )
-                encontrado = true
+                    encontrado = true
+                }
+
+                indice2 + 1
             }
 
-            indice2 + 1
+            indice + 1
         }
 
-        indice + 1
+        return matches
     }
-
-    return matches
 }
