@@ -7,7 +7,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 class OutputWriter {
-    fun writePair(
+    fun writePairs(
         couples: List<Couple>,
         outputDir: Path
     ) {
@@ -29,7 +29,7 @@ class OutputWriter {
         Files.write(file, lines)
     }
 
-    fun writeMatch(
+    fun writeMatches(
         matches: List<Match>,
         outputDir: Path
     ) {

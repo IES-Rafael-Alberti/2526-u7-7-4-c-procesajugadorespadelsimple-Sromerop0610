@@ -16,7 +16,7 @@ class PairMaker {
         return "mañana"
     }
 
-    fun couplesGenerator(player: List<Player>): MutableList<Couple> {
+    fun createPairs(player: List<Player>): MutableList<Couple> {
 
         val levels = player.groupBy { it.level }
         var couples: MutableList<Couple> = mutableListOf()
@@ -76,7 +76,7 @@ class PairMaker {
         return couples
     }
 
-    fun matchGenerator(couples: List<Couple>): MutableList<Match> {
+    fun createMatches(couples: List<Couple>): MutableList<Match> {
 
         val matches = mutableListOf<Match>()
 

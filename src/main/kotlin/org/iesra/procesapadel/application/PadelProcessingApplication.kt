@@ -1,10 +1,15 @@
 package org.iesra.procesapadel.application
 
 import org.iesra.procesapadel.cli.CliOptions
+import org.iesra.procesapadel.domain.infrastructure.OutputWriter
+import org.iesra.procesapadel.domain.infrastructure.PairMaker
+import org.iesra.procesapadel.domain.infrastructure.levelNormalizer
 import org.iesra.procesapadel.domain.infrastructure.playerFileRepository
 import org.iesra.procesapadel.domain.infrastructure.playerParser
 import org.iesra.procesapadel.domain.model.FileIssue
 import org.iesra.procesapadel.domain.model.Player
+import java.nio.file.Files
+import java.nio.file.Path
 
 /**
  * Coordina el caso de uso principal del programa.
@@ -28,7 +33,14 @@ class PadelProcessingApplication {
         println("Directorio de trabajo: ${options.path}")
         val playerFileRepository = playerFileRepository()
         val playerParser = playerParser()
+        val levelNormalizer = levelNormalizer()
+        val pairMaker = PairMaker()
+        val outputWriter = OutputWriter()
+        val outputDir = Path.of("output")
 
+        if (!Files.exists(outputDir)) {
+            Files.createDirectories(outputDir)
+        }
         // A partir de aquí, una solución OO razonable podría seguir este flujo.
         // En esta rama base no se implementa todavía: solo se deja la guía.
 
@@ -68,19 +80,20 @@ class PadelProcessingApplication {
 
         // Otro método: procesaJugadores(players)
         // 7. Para cada Player, calcular su nivel normalizado y validar su disponibilidad.
-        // val normalizedLevel = levelNormalizer.normalize(player)
+        val player = listOf<Player>()
+        val normalizedLevel = levelNormalizer.normalize(player)
 
         // 8. Delegar la creación de parejas equilibradas a una clase especializada.
-        // val pairs = pairMaker.createPairs(players)
+        val pairs = pairMaker.createPairs(player)
 
         // 9. Delegar la generación de partidos evitando repetir horarios.
-        // val matches = matchScheduler.createMatches(pairs, options.tournament)
+        val matches = pairMaker.createMatches(pairs)
 
         // ####################### Salida: ficheros de salida y resumen
 
         // 10. Delegar la escritura de ficheros de salida a un escritor.
-        // outputWriter.writePairs(...)
-        // outputWriter.writeMatches(...)
+        outputWriter.writePairs(pairs, outputDir)
+        outputWriter.writeMatches(matches, outputDir)
 
 
         // 11. Finalmente, construir un resumen y mostrarlo por consola.
