@@ -52,7 +52,7 @@ class PadelProcessingApplication {
 
               issues.add(FileIssue(
                   fileName = file.fileName.toString(),
-                  message = "Uno de los valores introducidos es incorrecto"
+                  message = "Uno de los valores de los jugadores está vacío o no corresponde al dato pedido en franja(tarde, noche, indiferente) o en nivel (intermedio, avanzado, iniciación)"
             ))
 
                // 5. Si el parser obtiene un jugador correcto, guardarlo como objeto `Player`.

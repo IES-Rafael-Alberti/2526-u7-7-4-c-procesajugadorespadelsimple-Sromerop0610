@@ -47,6 +47,7 @@ class playerParser {
             surname = surname,
             level = level,
             time = time,
+            fileName = path.fileName.toString()
         )
     }
 }

@@ -5,5 +5,5 @@ data class Player(
     val surname: String,
     val level: String,
     val time: String,
-    var coupleNumber: Int? = null
+    val fileName: String
 )
