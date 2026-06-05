@@ -11,14 +11,14 @@ class OutputWriter {
         outputDir: Path
     ) {
 
-        val file = outputDir.resolve("torneo-grupos.txt")
+        val file = outputDir.resolve("torneo-parejas.csv")
 
         val lines = buildList {
         val indice = 0
 
             for (couple in couples) {
-                add("[Pareja $indice")
-                add("- Nombre primer jugador: ${couple.player1} Nombre segundo jugador: ${couple.player2} Nivel: ${couple.level} Horario: ${couple.time}")
+                add("pareja|jugador1|jugador2|nivel|franja")
+                add("P$indice ${couple.player1} | ${couple.player2} | ${couple.level.uppercase()} | Horario: ${couple.time}")
 
                 add("")
                 indice + 1

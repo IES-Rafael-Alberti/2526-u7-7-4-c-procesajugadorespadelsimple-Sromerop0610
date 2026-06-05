@@ -23,7 +23,7 @@ class playerFileRepository {
         val processedDir = path.resolve("procesados")
 
         if (!Files.exists(processedDir))
-            Files.createDirectory(processedDir)
+            Files.createDirectories(processedDir)
 
         val target = processedDir.resolve(path.fileName)
 
