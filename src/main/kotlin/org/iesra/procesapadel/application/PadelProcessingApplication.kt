@@ -89,7 +89,7 @@ class PadelProcessingApplication {
             matches = matches.size
         )
 
-        summaryPrinter.print(summary)
+        summaryPrinter.print(summary, issues)
 
         printSuggestedDesign()
     }
