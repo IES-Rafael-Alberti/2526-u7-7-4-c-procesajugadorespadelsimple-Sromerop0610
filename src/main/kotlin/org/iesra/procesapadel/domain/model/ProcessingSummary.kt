@@ -6,7 +6,9 @@ package org.iesra.procesapadel.domain.model
  * Esta clase todavía es mínima, pero sirve para enseñar que el resumen también puede modelarse como un objeto.
  */
 data class ProcessingSummary(
-    val detectedFiles: Int,
+    val filesProcessed: Int,
     val validPlayers: Int,
-    val issues: List<FileIssue>,
+    val issues: Int,
+    val couples: Int,
+    val matches: Int
 )

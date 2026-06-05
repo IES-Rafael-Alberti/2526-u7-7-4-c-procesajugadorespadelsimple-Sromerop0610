@@ -1,0 +1,21 @@
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Ana, surname=García López, level=intermedio, time=tarde, fileName=ana-garcia.txt) | Player(name=Elena, surname=Martín Gil, level=intermedio, time=tarde, fileName=elena-martin.txt) | INTERMEDIO | Horario: tarde
+
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Hugo, surname=Molina Vega, level=intermedio, time=tarde, fileName=hugo-molina.txt) | Player(name=Marta, surname=Ruiz Cano, level=intermedio, time=tarde, fileName=marta-ruiz.txt) | INTERMEDIO | Horario: tarde
+
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Marcos, surname=Rubio Pérez, level=avanzado, time=indiferente, fileName=marcos-rubio.txt) | Player(name=Olivia, surname=Marín Ortega, level=avanzado, time=indiferente, fileName=olivia-marin.txt) | AVANZADO | Horario: mañana
+
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Raúl, surname=Cortés Núñez, level=avanzado, time=indiferente, fileName=raul-cortes.txt) | Player(name=Beatriz, surname=Luna Sánchez, level=avanzado, time=mañana, fileName=beatriz-luna.txt) | AVANZADO | Horario: mañana
+
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Nicolás, surname=Vega Romero, level=avanzado, time=tarde, fileName=nicolas-vega.txt) | Player(name=Pablo, surname=Torres Díaz, level=avanzado, time=tarde, fileName=pablo-torres.txt) | AVANZADO | Horario: tarde
+
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Carlos, surname=Peña Mora, level=iniciación, time=mañana, fileName=carlos-pena.txt) | Player(name=Irene, surname=Gómez Solís, level=iniciación, time=mañana, fileName=irene-gomez.txt) | INICIACIÓN | Horario: mañana
+
+pareja|jugador1|jugador2|nivel|franja
+P0 Player(name=Diego, surname=Santos Vera, level=iniciación, time=tarde, fileName=diego-santos.txt) | Player(name=Laura, surname=Blanco Díaz, level=iniciación, time=tarde, fileName=laura-blanco.txt) | INICIACIÓN | Horario: tarde
+
