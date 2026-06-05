@@ -1,6 +1,10 @@
 package org.iesra.procesapadel.application
 
 import org.iesra.procesapadel.cli.CliOptions
+import org.iesra.procesapadel.domain.infrastructure.playerFileRepository
+import org.iesra.procesapadel.domain.infrastructure.playerParser
+import org.iesra.procesapadel.domain.model.FileIssue
+import org.iesra.procesapadel.domain.model.Player
 
 /**
  * Coordina el caso de uso principal del programa.
@@ -22,6 +26,8 @@ class PadelProcessingApplication {
     fun run(options: CliOptions) {
         println("Torneo recibido: ${options.tournament}")
         println("Directorio de trabajo: ${options.path}")
+        val playerFileRepository = playerFileRepository()
+        val playerParser = playerParser()
 
         // A partir de aquí, una solución OO razonable podría seguir este flujo.
         // En esta rama base no se implementa todavía: solo se deja la guía.
@@ -29,28 +35,33 @@ class PadelProcessingApplication {
         // ####################### Entrada: Lectura de datos, conversión a estructuras
 
         // 1. Pedir a una clase repositorio que localice los `.txt` de entrada.
-        // val inputFiles = playerFileRepository.findInputFiles(options.path)
+        val inputFiles = playerFileRepository.findInputFiles(options.path)
 
         // 2. Crear colecciones donde guardar jugadores válidos e incidencias.
-        // val players = mutableListOf<Player>()
-        // val issues = mutableListOf<FileIssue>()
+        val players = mutableListOf<Player?>()
+        val issues = mutableListOf<FileIssue>()
 
         // 3. Recorrer cada fichero y delegar el parseo en un objeto parser.
         // Esto es un metodo: procesaFichero(inputFile, players, issues)
-        // for (file in inputFiles) {
-        //     val player = playerParser.parse(file)
-        //     ...
+        for (file in inputFiles) {
+             val player = playerParser.parse(file)
+
                // 4. Si el parser detecta errores, guardar incidencias.
-               // issues.add(FileIssue(...))
+            if (player==null)
+
+              issues.add(FileIssue(
+                       fileName = file.fileName.toString(),
+            message = "Uno de los valores introducidos es incorrecto"
+            ))
 
                // 5. Si el parser obtiene un jugador correcto, guardarlo como objeto `Player`.
-               // players.add(player)
+               players.add(player)
 
                // 6. Delegar el movimiento a `procesados` a un repositorio o gestor de ficheros.
-               // playerFileRepository.moveToProcessed(file)
+               playerFileRepository.moveToProcessed(file)
 
 
-        // }
+         }
 
         // ####################### Procesamiento: de datos de entrada, y generación de datos de salida
 

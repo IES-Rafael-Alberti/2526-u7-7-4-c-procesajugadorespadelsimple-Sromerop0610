@@ -4,7 +4,8 @@ import org.iesra.procesapadel.domain.model.Player
 import java.nio.file.Files
 import java.nio.file.Path
 
-class SimplePadelParser {
+class playerParser {
+
 
     fun parse(path: Path): Player? {
         val lines = Files.readAllLines(path)

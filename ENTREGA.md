@@ -1,13 +1,19 @@
 # ENTREGA
 
-TODO: ¿Quién eres?
+SARA ROMERO PERALTA, 1ºDAW A
 
 > Sustituye cada `TODO` por tu respuesta.
 > Usa enlaces permanentes de GitHub cuando se pidan enlaces al código.
 
 ## Descripción breve de la solución
 
-TODO
+Para implementar los requisitos pedidos, he seguido el flujo marcado por PadelProcessingApplication.kt, donde primero buscamos los archivos con el método findInputFiles de playerFileRepository.kt, parseamos los archivos con playerParser.kt y pasamos a procesados los archivos con el método moveToProcessed de playerFileRepository.kt.
+
+Una vez con los datos parseados, hacemos uso de SimplePadelLevelAgrupation para agrupar a todos los jugadores en el mismo nivel, y SimplePadelCoupleGenerator para crear las parejas del mismo nivel.
+
+Cuando tenemos las parejas hechas, usamos SimplePadelMatchesCreator.kt para crear los partidos.
+
+Por último, con el SimpleOutputWriter creamos el archivo .csv y el archivo .txt, y con SummaryPrinter.kt mostramos un resumen de los datos procesados y los resultados obtenidos.
 
 ## Ejemplo de ejecución
 
